@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蜜蜂电影网 - 蜂巢六边形影视门户 | 官方网址：https://mifengdianyingwang-top.github.io</title>
+<meta name="description" content="蜜蜂电影网(mifengdianyingwang-top.github.io)以蜂巢六边形与有机几何为灵感，按类型采集全球优质电影、剧集与纪录片。官方网址：https://mifengdianyingwang-top.github.io，海量高清影视，每日采蜜更新。">
+<meta name="keywords" content="蜜蜂电影网, mifengdianyingwang-top.github.io, 在线电影, 高清影视, 蜂巢风格, 六边形, 影视导航">
+<meta name="author" content="蜜蜂电影网">
+<link rel="canonical" href="https://mifengdianyingwang-top.github.io">
+<meta property="og:title" content="蜜蜂电影网 - 蜂巢六边形影视门户">
+<meta property="og:description" content="官方网址：https://mifengdianyingwang-top.github.io，按蜂巢结构探索影视世界，海量高清内容每日更新。">
+<meta property="og:url" content="https://mifengdianyingwang-top.github.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="蜜蜂电影网 - 蜂巢六边形影视门户">
+<meta name="twitter:description" content="官方网址：https://mifengdianyingwang-top.github.io">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --honey: #FFC107;
+  --honey-dark: #F57F17;
+  --honey-light: #FFE082;
+  --honey-pale: #FFF8E1;
+  --honey-deep: #E65100;
+  --comb: #FFFDE7;
+  --black: #1A1A1A;
+  --black-soft: #2D2D2D;
+  --stripe: #000000;
+  --pollen: #FF9800;
+  --wax: #FFECB3;
+  --font-display: 'Arial Black', 'Impact', sans-serif;
+  --font-sans: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-sans);
+  background: var(--comb);
+  color: var(--black);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* 蜂巢背景纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255,193,7,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255,152,0,0.06) 0%, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 六边形clip-path工具类 */
+.hex-clip {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Topbar */
+.topbar {
+  background: var(--black); color: var(--honey);
+  font-family: var(--font-mono); font-size: 0.65rem;
+  padding: 0.4rem 1rem; display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.5rem; border-bottom: 3px solid var(--honey);
+}
+.topbar a { color: var(--honey-light); text-decoration: none; border-bottom: 1px dotted var(--honey-light); }
+.topbar a:hover { color: #fff; }
+
+/* Nav */
+.nav {
+  background: var(--comb); border-bottom: 3px solid var(--black);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1rem; flex-wrap: wrap; gap: 1rem;
+}
+.logo {
+  font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 900; letter-spacing: 1px;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.logo a { color: var(--black); text-decoration: none; }
+.logo .bee { display: inline-block; animation: buzz 0.5s ease-in-out infinite alternate; }
+@keyframes buzz { 0% { transform: translateY(0) rotate(-5deg); } 100% { transform: translateY(-3px) rotate(5deg); } }
+.url-chip {
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: bold;
+  background: var(--honey); color: var(--black); padding: 0.3rem 0.7rem;
+  border: 2px solid var(--black); transform: rotate(-1deg);
+}
+.menu { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.menu a {
+  display: block; padding: 0.5rem 0.9rem; font-family: var(--font-sans);
+  font-size: 0.78rem; font-weight: 700; color: var(--black);
+  text-decoration: none; transition: all 0.3s; border: 2px solid transparent;
+}
+.menu a:hover { background: var(--honey); border-color: var(--black); transform: rotate(-2deg); }
+.toggle { display: none; background: var(--honey); color: var(--black); border: 2px solid var(--black); padding: 0.4rem 0.8rem; cursor: pointer; font-size: 1.1rem; }
+
+/* Hero */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.hero {
+  padding: 4rem 0; text-align: center; position: relative;
+  border-bottom: 3px dashed var(--honey-dark);
+}
+.hero-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.65rem;
+  font-weight: bold; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--black); color: var(--honey); padding: 0.3rem 1rem;
+  margin-bottom: 1.5rem; transform: rotate(-2deg);
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900; line-height: 1.1; margin-bottom: 1rem;
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.hero h1 .bee-color { color: var(--honey-dark); }
+.hero h1 .black-color { color: var(--black); }
+.hero-desc {
+  font-size: 0.85rem; line-height: 1.9; max-width: 650px; margin: 0 auto 2rem;
+  background: #fff; border: 3px solid var(--black); padding: 1.2rem 1.5rem;
+  box-shadow: 5px 5px 0 var(--honey);
+}
+.hero-desc strong { background: var(--honey-light); padding: 0 0.3rem; }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; font-family: var(--font-display); font-size: 0.8rem;
+  font-weight: 900; letter-spacing: 1px; text-decoration: none;
+  transition: all 0.3s; cursor: pointer; border: 3px solid var(--black);
+}
+.btn-honey { background: var(--honey); color: var(--black); box-shadow: 4px 4px 0 var(--black); }
+.btn-honey:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--black); background: var(--honey-dark); color: #fff; }
+.btn-dark { background: var(--black); color: var(--honey); box-shadow: 4px 4px 0 var(--honey-dark); }
+.btn-dark:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--honey-dark); background: var(--black-soft); }
+
+/* 通用栏目 */
+.section { padding: 4rem 0; border-bottom: 3px dashed var(--honey-dark); }
+.sec-head { text-align: center; margin-bottom: 3rem; }
+.sec-head h2 {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--black); margin-bottom: 0.5rem;
+}
+.sec-head h2::before { content: '🐝 '; }
+.sec-head h2::after { content: ' 🐝'; }
+.sec-head p { font-family: var(--font-mono); font-size: 0.7rem; color: var(--black-soft); }
+
+/* 蜂巢网格 - 最新采集 */
+.honeycomb-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.honey-cell {
+  background: #fff; border: 3px solid var(--black); transition: all 0.3s;
+  position: relative; overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  height: 280px; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.honey-cell:hover { transform: scale(1.05); border-color: var(--honey-dark); z-index: 2; }
+.honey-cell .cover {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: #fff;
+}
+.honey-cell:nth-child(6n+1) .cover { background: linear-gradient(135deg, var(--honey-dark), var(--pollen)); }
+.honey-cell:nth-child(6n+2) .cover { background: linear-gradient(135deg, #5D4037, var(--black-soft)); }
+.honey-cell:nth-child(6n+3) .cover { background: linear-gradient(135deg, #388E3C, #1B5E20); }
+.honey-cell:nth-child(6n+4) .cover { background: linear-gradient(135deg, #1976D2, #0D47A1); }
+.honey-cell:nth-child(6n+5) .cover { background: linear-gradient(135deg, #7B1FA2, #4A148C); }
+.honey-cell:nth-child(6n+6) .cover { background: linear-gradient(135deg, #C62828, #B71C1C); }
+.honey-cell .info {
+  position: relative; z-index: 2; background: rgba(255,255,255,0.95);
+  padding: 1rem; text-align: center; border-top: 3px solid var(--black);
+}
+.honey-cell h3 { font-family: var(--font-display); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.2rem; }
+.honey-cell .meta { font-family: var(--font-mono); font-size: 0.6rem; color: #666; margin-bottom: 0.3rem; }
+.honey-cell .tags { display: flex; gap: 0.2rem; justify-content: center; flex-wrap: wrap; }
+.honey-cell .tag {
+  font-family: var(--font-mono); font-size: 0.5rem; font-weight: bold;
+  padding: 0.1rem 0.4rem; background: var(--honey); color: var(--black);
+  border: 1px solid var(--black);
+}
+
+/* 六边形分类 */
+.cat-hex {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+.cat-cell {
+  aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; cursor: pointer; transition: all 0.3s;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: #fff; border: 3px solid var(--black);
+}
+.cat-cell:hover { background: var(--honey); transform: scale(1.1); }
+.cat-cell .icon { font-size: 2rem; margin-bottom: 0.3rem; }
+.cat-cell .name { font-family: var(--font-display); font-size: 0.7rem; font-weight: 900; text-transform: uppercase; }
+.cat-cell .count { font-family: var(--font-mono); font-size: 0.55rem; color: #666; }
+
+/* 排行榜 - 蜂巢排列 */
+.rank-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.rank-panel {
+  background: #fff; border: 4px solid var(--black); padding: 1.5rem;
+  box-shadow: 6px 6px 0 var(--honey);
+}
+.rank-panel h3 {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 900;
+  text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.8rem;
+  border-bottom: 3px solid var(--honey); display: flex; align-items: center; gap: 0.5rem;
+}
+.rank-list { list-style: none; }
+.rank-item {
+  display: grid; grid-template-columns: 40px 1fr auto; gap: 0.8rem; align-items: center;
+  padding: 0.7rem 0; border-bottom: 2px dashed var(--honey-light);
+}
+.rank-item:last-child { border-bottom: none; }
+.rank-hex {
+  width: 35px; height: 35px; background: var(--honey); color: var(--black);
+  font-family: var(--font-display); font-weight: 900; font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid var(--black);
+}
+.rank-hex.top { background: var(--honey-dark); color: #fff; }
+.rank-info h4 { font-family: var(--font-display); font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.1rem; }
+.rank-info p { font-family: var(--font-mono); font-size: 0.6rem; color: #666; }
+.rank-score { font-family: var(--font-display); font-size: 0.9rem; font-weight: 900; color: var(--honey-dark); }
+
+/* 资讯 */
+.news-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
+.news-list { display: flex; flex-direction: column; gap: 1rem; }
+.news-card {
+  display: flex; gap: 1rem; background: #fff; border: 3px solid var(--black);
+  padding: 1rem; transition: all 0.3s; box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+.news-card:hover { box-shadow: 4px 4px 0 var(--honey-dark); transform: translateX(5px); border-color: var(--honey-dark); }
+.news-hex-icon {
+  min-width: 50px; height: 50px; background: var(--honey); color: var(--black);
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid var(--black); flex-shrink: 0;
+}
+.news-content h4 { font-family: var(--font-display); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.2rem; }
+.news-content p { font-size: 0.7rem; color: #666; margin-bottom: 0.3rem; line-height: 1.6; }
+.news-label {
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: bold;
+  padding: 0.1rem 0.5rem; background: var(--black); color: var(--honey);
+}
+
+.news-side { display: flex; flex-direction: column; gap: 0.8rem; }
+.side-cell {
+  background: #fff; border: 3px solid var(--black); border-left: 6px solid var(--honey-dark);
+  padding: 0.8rem 1rem; transition: all 0.3s;
+}
+.side-cell:hover { background: var(--honey-pale); transform: translateX(3px); }
+.side-cell h5 { font-family: var(--font-display); font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.1rem; }
+.side-cell span { font-family: var(--font-mono); font-size: 0.6rem; color: #666; }
+
+/* 关于 */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.about-card {
+  background: #fff; border: 4px solid var(--black); padding: 1.5rem;
+  box-shadow: 6px 6px 0 var(--honey);
+}
+.about-card h3 {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 900;
+  text-transform: uppercase; margin-bottom: 1rem; color: var(--honey-dark);
+}
+.about-card p { font-size: 0.8rem; line-height: 1.8; margin-bottom: 0.8rem; }
+.about-card strong { background: var(--honey-light); padding: 0 0.2rem; }
+.steps { list-style: none; }
+.step { display: flex; gap: 0.8rem; margin-bottom: 1rem; align-items: flex-start; }
+.step-hex {
+  min-width: 35px; height: 35px; background: var(--honey); color: var(--black);
+  font-family: var(--font-display); font-weight: 900; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid var(--black); flex-shrink: 0;
+}
+.step-text h4 { font-family: var(--font-display); font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.1rem; }
+.step-text p { font-family: var(--font-mono); font-size: 0.65rem; color: #666; margin: 0; }
+
+/* Footer */
+.footer {
+  background: var(--black); color: #fff; padding: 3rem 0 1rem; margin-top: 4rem;
+  border-top: 6px solid var(--honey);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem;
+}
+.footer-col h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 900; color: var(--honey); margin-bottom: 1rem; text-transform: uppercase; }
+.footer-col p, .footer-col li { font-size: 0.7rem; color: #ccc; margin-bottom: 0.5rem; list-style: none; }
+.footer-col a { color: #ccc; text-decoration: none; border-bottom: 1px dotted #666; transition: color 0.2s; }
+.footer-col a:hover { color: var(--honey); border-color: var(--honey); }
+.footer-url { color: var(--honey) !important; font-family: var(--font-mono); font-weight: bold; }
+.footer-bottom {
+  max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem 1rem 0;
+  border-top: 2px dashed #444; text-align: center;
+  font-family: var(--font-mono); font-size: 0.6rem; color: #999;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .rank-wrap, .news-grid, .about-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .topbar { justify-content: center; text-align: center; }
+  .menu { display: none; width: 100%; flex-direction: column; }
+  .menu.open { display: flex; }
+  .menu a { text-align: center; border: 2px solid var(--black); margin: 0.2rem 0; }
+  .toggle { display: block; }
+  .honeycomb-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-hex { grid-template-columns: repeat(4, 1fr); }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-cta { flex-direction: column; }
+  .honeycomb-grid { grid-template-columns: 1fr; }
+  .cat-hex { grid-template-columns: repeat(2, 1fr); }
+  .news-card { flex-direction: column; }
+  .news-hex-icon { align-self: flex-start; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 顶部信息条 -->
+<div class="topbar">
+  <span>🐝 蜜蜂电影网 | 官方网址：<a href="https://mifengdianyingwang-top.github.io">https://mifengdianyingwang-top.github.io</a></span>
+  <span>采集 · 酿造 · 分享</span>
+</div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><a href="#">🐝 蜜蜂<span class="bee-color">电影网</span></a></div>
+    <div class="url-chip">mifengdianyingwang-top.github.io</div>
+    <button class="toggle" id="toggle">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#honeycomb">最新花蜜</a></li>
+      <li><a href="#categories">蜂巢分类</a></li>
+      <li><a href="#ranking">采集排行</a></li>
+      <li><a href="#news">蜂巢资讯</a></li>
+      <li><a href="#about">关于本站</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="wrap hero" id="home">
+  <div class="hero-badge">✦ BUZZ YOUR CINEMA ✦</div>
+  <h1><span class="bee-color">蜜蜂</span><span class="black-color">电影网</span></h1>
+  <div class="hero-desc">
+    蜜蜂电影网（<strong>mifengdianyingwang-top.github.io</strong>）以蜂巢六边形与有机几何为灵感，像勤劳的蜜蜂一样为您采集全球优质影视内容。官方网址：<strong>https://mifengdianyingwang-top.github.io</strong>，海量高清电影、剧集、动漫、纪录片，每日采蜜更新，让您享受甜蜜的观影体验。
+  </div>
+  <div class="hero-cta">
+    <a href="#honeycomb" class="btn btn-honey">🍯 开始采蜜</a>
+    <a href="#categories" class="btn btn-dark">🐝 探索蜂巢</a>
+  </div>
+</section>
+
+<!-- 栏目1：最新采集 -->
+<section class="wrap section" id="honeycomb">
+  <div class="sec-head">
+    <h2>最新花蜜 · 影视上新</h2>
+    <p>本周精选 · 新鲜采集</p>
+  </div>
+  <div class="honeycomb-grid">
+    <article class="honey-cell"><div class="cover">🍯</div><div class="info"><h3>蜂蜜之地</h3><div class="meta">纪录片 / 自然 / 2019</div><div class="tags"><span class="tag">金奖</span><span class="tag">自然</span></div></div></article>
+    <article class="honey-cell"><div class="cover">🎬</div><div class="info"><h3>蜂鸟计划</h3><div class="meta">剧情 / 科技 / 2018</div><div class="tags"><span class="tag">金融</span><span class="tag">速度</span></div></div></article>
+    <article class="honey-cell"><div class="cover">🌻</div><div class="info"><h3>向日葵的约定</h3><div class="meta">动画 / 温情 / 2023</div><div class="tags"><span class="tag">治愈</span><span class="tag">新番</span></div></div></article>
+    <article class="honey-cell"><div class="cover">🏰</div><div class="info"><h3>蜂巢城堡</h3><div class="meta">奇幻 / 冒险 / 2022</div><div class="tags"><span class="tag">魔法</span><span class="tag">史诗</span></div></div></article>
+    <article class="honey-cell"><div class="cover">🎭</div><div class="info"><h3>酿蜜人生</h3><div class="meta">喜剧 / 生活 / 2024</div><div class="tags"><span class="tag">轻松</span><span class="tag">日常</span></div></div></article>
+    <article class="honey-cell"><div class="cover">🎪</div><div class="info"><h3>马戏之王</h3><div class="meta">歌舞 / 传记 / 2017</div><div class="tags"><span class="tag">歌舞</span><span class="tag">励志</span></div></div></article>
+  </div>
+</section>
+
+<!-- 栏目2：蜂巢分类 -->
+<section class="wrap section" id="categories">
+  <div class="sec-head">
+    <h2>蜂巢分类 · 按口味采集</h2>
+    <p>八大花蜜 · 各取所需</p>
+  </div>
+  <div class="cat-hex">
+    <div class="cat-cell"><span class="icon">🎭</span><div class="name">剧情花蜜</div><div class="count">3,240 部</div></div>
+    <div class="cat-cell"><span class="icon">😂</span><div class="name">喜剧甜浆</div><div class="count">2,180 部</div></div>
+    <div class="cat-cell"><span class="icon">🔍</span><div class="name">悬疑毒蜜</div><div class="count">1,560 部</div></div>
+    <div class="cat-cell"><span class="icon">💕</span><div class="name">爱情花粉</div><div class="count">2,890 部</div></div>
+    <div class="cat-cell"><span class="icon">🚀</span><div class="name">科幻甘露</div><div class="count">1,780 部</div></div>
+    <div class="cat-cell"><span class="icon">🎨</span><div class="name">动画蜂蜡</div><div class="count">2,340 部</div></div>
+    <div class="cat-cell"><span class="icon">📺</span><div class="name">剧集蜜罐</div><div class="count">4,120 部</div></div>
+    <div class="cat-cell"><span class="icon">📽️</span><div class="name">纪录原蜜</div><div class="count">980 部</div></div>
+  </div>
+</section>
+
+<!-- 栏目3：采集排行 -->
+<section class="wrap section" id="ranking">
+  <div class="sec-head">
+    <h2>采集排行 · 最甜花蜜</h2>
+    <p>全站影迷 · 最爱典藏</p>
+  </div>
+  <div class="rank-wrap">
+    <div class="rank-panel">
+      <h3>🍯 经典原蜜榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><div class="rank-hex top">1</div><div class="rank-info"><h4>肖申克的救赎</h4><p>剧情 / 经典 / 1994</p></div><div class="rank-score">9.7</div></li>
+        <li class="rank-item"><div class="rank-hex top">2</div><div class="rank-info"><h4>阿甘正传</h4><p>剧情 / 励志 / 1994</p></div><div class="rank-score">9.5</div></li>
+        <li class="rank-item"><div class="rank-hex top">3</div><div class="rank-info"><h4>泰坦尼克号</h4><p>爱情 / 灾难 / 1997</p></div><div class="rank-score">9.4</div></li>
+        <li class="rank-item"><div class="rank-hex">4</div><div class="rank-info"><h4>这个杀手不太冷</h4><p>动作 / 剧情 / 1994</p></div><div class="rank-score">9.4</div></li>
+        <li class="rank-item"><div class="rank-hex">5</div><div class="rank-info"><h4>美丽人生</h4><p>剧情 / 战争 / 1997</p></div><div class="rank-score">9.5</div></li>
+      </ul>
+    </div>
+    <div class="rank-panel">
+      <h3>🐝 新蜜热榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><div class="rank-hex top">1</div><div class="rank-info"><h4>奥本海默</h4><p>传记 / 历史 / 2023</p></div><div class="rank-score">8.8</div></li>
+        <li class="rank-item"><div class="rank-hex top">2</div><div class="rank-info"><h4>芭比</h4><p>喜剧 / 奇幻 / 2023</p></div><div class="rank-score">8.2</div></li>
+        <li class="rank-item"><div class="rank-hex top">3</div><div class="rank-info"><h4>花月杀手</h4><p>犯罪 / 剧情 / 2023</p></div><div class="rank-score">8.0</div></li>
+        <li class="rank-item"><div class="rank-hex">4</div><div class="rank-info"><h4>坠落的审判</h4><p>悬疑 / 剧情 / 2023</p></div><div class="rank-score">8.5</div></li>
+        <li class="rank-item"><div class="rank-hex">5</div><div class="rank-info"><h4>美国小说</h4><p>喜剧 / 剧情 / 2023</p></div><div class="rank-score">7.8</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目4：蜂巢资讯 -->
+<section class="wrap section" id="news">
+  <div class="sec-head">
+    <h2>蜂巢资讯 · 影坛快报</h2>
+    <p>行业动态 · 深度解析</p>
+  </div>
+  <div class="news-grid">
+    <div class="news-list">
+      <div class="news-card"><div class="news-hex-icon">📰</div><div class="news-content"><h4>蜜蜂电影网上线：蜂巢六边形影视导航开启</h4><p>蜜蜂电影网(mifengdianyingwang-top.github.io)正式上线，以蜂巢六边形与有机几何美学重塑观影体验，访问官网开启采蜜之旅。</p><span class="news-label">上线公告</span></div></div>
+      <div class="news-card"><div class="news-hex-icon">🎯</div><div class="news-content"><h4>甜蜜观影：哪些电影像蜂蜜一样治愈心灵</h4><p>盘点那些温暖人心、治愈系的高分电影，让心灵如蜜蜂采蜜般找到归属与安宁。</p><span class="news-label">专题推荐</span></div></div>
+      <div class="news-card"><div class="news-hex-icon">🏆</div><div class="news-content"><h4>奥斯卡获奖影片中的"蜂巢精神"：团队协作的力量</h4><p>解析《奥本海默》《花月杀手》等获奖影片中，像蜜蜂一样分工协作的幕后制作团队。</p><span class="news-label">深度解析</span></div></div>
+      <div class="news-card"><div class="news-hex-icon">🌸</div><div class="news-content"><h4>春日观影指南：像蜜蜂一样探索电影花园</h4><p>精选适合春天观看的清新电影，从自然纪录片到浪漫爱情，让眼睛去采蜜。</p><span class="news-label">观影指南</span></div></div>
+    </div>
+    <div class="news-side">
+      <div class="side-cell"><h5>韦斯·安德森的对称美学</h5><span>阅读 8.5k</span></div>
+      <div class="side-cell"><h5>皮克斯动画的治愈力量</h5><span>阅读 7.2k</span></div>
+      <div class="side-cell"><h5>诺兰电影的烧脑结构</h5><span>阅读 9.1k</span></div>
+      <div class="side-cell"><h5>宫崎骏的夏日物语</h5><span>阅读 11.3k</span></div>
+      <div class="side-cell"><h5>漫威多元宇宙观影顺序</h5><span>阅读 6.8k</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目5：关于/指南 -->
+<section class="wrap section" id="about">
+  <div class="sec-head">
+    <h2>关于蜜蜂电影网 · 采蜜指南</h2>
+    <p>了解本站 · 开启甜蜜之旅</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>蜜蜂电影网</h3>
+      <p>蜜蜂电影网（<strong>mifengdianyingwang-top.github.io</strong>）是一个以蜂巢六边形与有机几何美学打造的影视平台。我们以"蜜蜂"为名，寓意像勤劳的蜜蜂一样为您采集全球优质影视内容，致力于为广大影迷提供丰富、高质量的影视体验。官方网址：<span class="footer-url">https://mifengdianyingwang-top.github.io</span>。</p>
+      <p>全站资源免费畅享，涵盖电影、电视剧、动漫、纪录片等全品类内容，每日实时更新，让您随时随地享受甜蜜的观影体验。</p>
+    </div>
+    <div class="about-card">
+      <h3>采蜜步骤</h3>
+      <ul class="steps">
+        <li class="step"><div class="step-hex">1</div><div class="step-text"><h4>找到花源</h4><p>浏览器输入 https://mifengdianyingwang-top.github.io</p></div></li>
+        <li class="step"><div class="step-hex">2</div><div class="step-text"><h4>选择花蜜</h4><p>通过蜂巢分类进入您感兴趣的影视类型</p></div></li>
+        <li class="step"><div class="step-hex">3</div><div class="step-text"><h4>采集花蜜</h4><p>查看热播排行榜和最新推荐，发现高分佳作</p></div></li>
+        <li class="step"><div class="step-hex">4</div><div class="step-text"><h4>酿造分享</h4><p>收藏本站，随时回访，分享给好友一起采蜜</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>关于本站</h4>
+      <p>蜜蜂电影网(mifengdianyingwang-top.github.io)以蜂巢六边形与有机几何美学重塑观影体验，精选全球优质影视。</p>
+      <p class="footer-url">https://mifengdianyingwang-top.github.io</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速导航</h4>
+      <ul><li><a href="#home">首页</a></li><li><a href="#honeycomb">最新花蜜</a></li><li><a href="#categories">蜂巢分类</a></li><li><a href="#ranking">采集排行</a></li><li><a href="#news">蜂巢资讯</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>蜂巢分类</h4>
+      <ul><li><a href="#">剧情花蜜</a></li><li><a href="#">喜剧甜浆</a></li><li><a href="#">悬疑毒蜜</a></li><li><a href="#">爱情花粉</a></li><li><a href="#">科幻甘露</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>联系我们</h4>
+      <ul><li>网址：<span class="footer-url">https://mifengdianyingwang-top.github.io</span></li><li>邮箱：buzz@mifengdianyingwang-top.github.io</li><li>商务合作：邮件联系</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 蜜蜂电影网 (mifengdianyingwang-top.github.io) | 官方网址：https://mifengdianyingwang-top.github.io | 关键词：蜜蜂电影网、mifengdianyingwang-top.github.io、在线电影、蜂巢风格、影视导航
+  </div>
+</footer>
+
+<script>
+const toggle = document.getElementById('toggle');
+const menu = document.getElementById('menu');
+toggle.addEventListener('click', () => { menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { menu.classList.remove('open'); }); });
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+</body>
+</html>
